@@ -1,61 +1,62 @@
 <template>
   <div>
     <button class="buttonStyle" @click="reduce">-</button>
-    <input class="inputStyle" type="text" :disabled="inputNumberDisabled" v-model="currentValue" @click="change(val)">
+    <input class="inputStyle" type="text" :disabled="inputNumberDisabled" v-model="currentValue" @click="handleChange()"/>
     <button class="buttonStyle" @click="add">+</button>
   </div>
 </template>
 
 <script>
 export default {
-  data () {
+  data() {
     return {
-      currentValue: 0,
-    }
+      currentValue: 0
+    };
   },
   props: {
-		value: {
-			type: Number,
-			default: 0
-		},
-		step: {
-			type: Number,
-			default: 1
+    value: {
+      type: Number,
+      default: 0
     },
-    disabled: {  
+    step: {
+      type: Number,
+      default: 1
+    },
+    disabled: {
       type: Boolean,
       default: false
-    },
-  },
-  computed: {
-    inputNumberDisabled() { 
-        return this.disabled;
     }
   },
-  mounted () {
-      this.updateValue(this.value);
+  computed: {
+    inputNumberDisabled() {
+      return this.disabled;
+    }
   },
-  methods:{
-    reduce(){
+  mounted() {
+    // 更新当前值
+    this.updateValue(this.value);
+  },
+  methods: {
+    reduce() {
       this.currentValue -= this.step;
-      this.$emit('change',this.currentValue)
+      this.$emit("change", this.currentValue);
     },
-    add(){
+    add() {
       this.currentValue += this.step;
-      this.$emit('change',this.currentValue)
+      this.$emit("change", this.currentValue);
     },
     handleChange(val) {
-      this.$emit("change", this.currentValue); 
+      this.$emit("change", this.currentValue);
     },
     updateValue(val) {
       this.currentValue = val;
     }
   }
-}
+};
 </script>
 
 <style scoped>
-.inputStyle{
+.inputStyle {
   width: 60px;
   text-align: center;
   height: 35px;
@@ -67,7 +68,7 @@ export default {
   color: #606266;
   cursor: pointer;
 }
-.buttonStyle{
+.buttonStyle {
   width: 30px;
   height: 35px;
   border-radius: 4px;

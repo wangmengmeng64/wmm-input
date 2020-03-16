@@ -1,7 +1,7 @@
 <template>
   <div>
     <h3 style="text-align: center;">InputNumber 计数器</h3>
-    <wmmInput v-model="value" :disabled="false" :step="2"  @change="handleChange"></wmmInput>
+    <wmmInput v-model="value" :disabled="false" :step="2" @change="handleChange"></wmmInput>
   </div>
 </template>
 
